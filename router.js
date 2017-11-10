@@ -5,16 +5,15 @@ import { getUsers } from './functions/user'
 import { validateEmpty, validateKeys } from './tools'
 const app = new Express();
 const router = Express.Router();
-
+/**
+ * Lista de peticiones aceptadas por la API
+ */
 let data = {
     dataReq: '',
     dataRes: ''
 }
 
 router.get('/users', (req, res) => {
-    // let GetUsers = getUsers();
-    // console.log(GetUsers)
-    // res.json(GetUsers)
     UserModel.findAll({ attributes: { exclude: ['password'] } }).then(users => {
         if (Object.keys(users).length == 0) {
             res.json({
@@ -54,7 +53,6 @@ router.put('/users/:id', (req, res) => {
     const validateParamsBody = validateEmpty(req.body);
     let params = Object.keys(UserModel.rawAttributes).filter((i) => i !== 'id');
     const validateRequest = validateKeys(params, newUser);
-    console.log(validateParamsBody)
     if (validateParamsBody.error) {
         res.json({
             success: false,
@@ -101,7 +99,6 @@ const verifyPost = (req, res, next) => {
     let params = Object.keys(UserModel.rawAttributes).filter((i) => i !== 'id');
     const validateRequest = validateKeys(params, newUser);
     if (respTool.error || validateRequest.error) {
-        console.log(51545)
         return res.json({
             success: false,
             message: respTool.message
@@ -130,46 +127,42 @@ router.post('/users', verifyPost, (req, res, next) => {
 
 
 });
-router.post('/users/login', (req, res) => {
-
-    let authLogin = req.body;
-    let params = Object.keys(UserModel.rawAttributes).filter((i) => i == 'Username' || i == 'password');
-    const respTool = validateEmpty(authLogin);
-    const validateRequest = validateKeys(params, authLogin);
-    if (!respTool.error && !validateRequest.error) {
-        UserModel.findOne({ where: { Username: authLogin.Username } }).then(user => {
-            if (!user) {
-                res.json({
-                    success: false,
-                    message: "User not found"
-                });
-            } else {
-                if (authLogin.Username == user.Username && authLogin.password == user.password) {
-                    res.json({
-                        success: true,
-                        data: [user]
-                    });
-                } else {
-                    res.json({
-                        success: false,
-                        message: "Username or Password incorrect"
-                    });
-                }
-                console.log('Parametro Username: --->', req.body.Username);
-                console.log('Parametro password: --->', req.body.password);
-                console.log('usuario passrowd: --->', user.password);
-                console.log('usuario Username: --->', user.Username);
-                // if(req.params.id == user.id && user.mail == req.params.mail){
-
-                // }
-            }
-        });
-
-    } else {
-        res.json({
+const verifyPostLogin = (req, res, next) => {
+    let authData = req.body;
+    const respTool = validateEmpty(authData);
+    let params = Object.keys(UserModel.rawAttributes).filter((i) => i == 'Username' || i=='password');
+    const validateRequest = validateKeys(params, authData);
+    if (respTool.error || validateRequest.error) {
+        return res.json({
             success: false,
             message: respTool.message
         });
     }
+    req.authData = authData;
+    next();
+
+};
+router.post('/users/login',verifyPostLogin, (req, res) => {
+    const { authData } = req;
+    UserModel.findOne({ where: { Username: authData.Username } }).then(user => {
+        if (!user) {
+            res.json({
+                success: false,
+                message: "User not found"
+            });
+        } else {
+            if (authData.Username == user.Username && authData.password == user.password) {
+                res.json({
+                    success: true,
+                    data: [user]
+                });
+            } else {
+                res.json({
+                    success: false,
+                    message: "Username or Password incorrect"
+                });
+            }
+        }
+    });
 });
 export default router;

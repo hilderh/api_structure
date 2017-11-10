@@ -1,3 +1,6 @@
+/**
+ * Herramientas para validar campos recibidos desde las peticiones en la API
+ */
 var cb = {
     error: false,
     message: ''

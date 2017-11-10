@@ -1,0 +1,177 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TestJob",
+		"_postman_id": "b7db4103-cc9f-9e19-b92f-1fcbde2340f2",
+		"description": "Coleccion de servicios de una rest api para un registrar,consultar,modificar, eliminar y logear un usuario.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/users/",
+			"request": {
+				"url": "http://localhost:3000/api/users/50",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "EndPoint/Servicio para consultar una lista de usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/users/80",
+			"request": {
+				"url": "http://localhost:3000/api/users/80",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "EndPoint/Servicio para consultar un usuario en especifico"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/users/",
+			"request": {
+				"url": "http://localhost:3000/api/users/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "Leo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Loyo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "cyberedward@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Username",
+							"value": "leol",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "EndPoint/Servicio para agregar un nuevo usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/users/login",
+			"request": {
+				"url": "http://localhost:3000/api/users/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Username",
+							"value": "opayntonq",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "asdasdasd",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "EndPoint/Servicio para logear un usuario en la aplicacion"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/users/80",
+			"request": {
+				"url": "http://localhost:3000/api/users/80",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "Hilder",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Hernandez",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Endpoint/servicio para modificar un usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/users/80",
+			"request": {
+				"url": "http://localhost:3000/api/users/80",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "EndPoint/Service para eliminar un usuario"
+			},
+			"response": []
+		}
+	]
+}
