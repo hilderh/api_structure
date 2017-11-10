@@ -19,6 +19,7 @@
     "sequelize": "^4.22.5"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "babel-node": "^6.5.3"
   }
 }

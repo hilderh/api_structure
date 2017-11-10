@@ -36,7 +36,7 @@ router.get('/users/:id', (req, res) => {
             res.json({
                 success: true,
                 data: user
-            });
+            }); 
         }
 
     });
