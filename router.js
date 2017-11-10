@@ -8,26 +8,19 @@ const router = Express.Router();
 /**
  * Lista de peticiones aceptadas por la API
  */
-let data = {
-    dataReq: '',
-    dataRes: ''
-}
 
 router.get('/users', (req, res) => {
     UserModel.findAll({ attributes: { exclude: ['password'] } }).then(users => {
         if (Object.keys(users).length == 0) {
-            res.json({
+            return res.json({
                 success: false,
                 message: 'There are no users on the platform'
             });
-        } else {
-            if (Object.keys(users).length > 0) {
-                res.json({
-                    success: true,
-                    result: [users]
-                });
-            }
         }
+        res.json({
+            success: true,
+            result: users
+        });
 
     })
 });
@@ -130,7 +123,7 @@ router.post('/users', verifyPost, (req, res, next) => {
 const verifyPostLogin = (req, res, next) => {
     let authData = req.body;
     const respTool = validateEmpty(authData);
-    let params = Object.keys(UserModel.rawAttributes).filter((i) => i == 'Username' || i=='password');
+    let params = Object.keys(UserModel.rawAttributes).filter((i) => i == 'Username' || i == 'password');
     const validateRequest = validateKeys(params, authData);
     if (respTool.error || validateRequest.error) {
         return res.json({
@@ -142,7 +135,7 @@ const verifyPostLogin = (req, res, next) => {
     next();
 
 };
-router.post('/users/login',verifyPostLogin, (req, res) => {
+router.post('/users/login', verifyPostLogin, (req, res) => {
     const { authData } = req;
     UserModel.findOne({ where: { Username: authData.Username } }).then(user => {
         if (!user) {

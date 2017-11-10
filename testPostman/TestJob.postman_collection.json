@@ -1,31 +1,34 @@
 {
 	"variables": [],
 	"info": {
-		"name": "TestJob",
-		"_postman_id": "b7db4103-cc9f-9e19-b92f-1fcbde2340f2",
+		"name": "TestJob copy",
+		"_postman_id": "2870da88-8a2f-386c-8ad3-47086a8bd5ce",
 		"description": "Coleccion de servicios de una rest api para un registrar,consultar,modificar, eliminar y logear un usuario.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "http://localhost:3000/api/users/80",
+			"request": {
+				"url": "http://localhost:3000/api/users/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "EndPoint/Servicio para consultar un usuario en especifico"
+			},
+			"response": []
+		},
 		{
 			"name": "http://localhost:3000/api/users/",
 			"request": {
 				"url": "http://localhost:3000/api/users/50",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": "EndPoint/Servicio para consultar una lista de usuarios"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/api/users/80",
-			"request": {
-				"url": "http://localhost:3000/api/users/80",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "EndPoint/Servicio para consultar un usuario en especifico"
 			},
 			"response": []
 		},
@@ -46,19 +49,19 @@
 					"urlencoded": [
 						{
 							"key": "first_name",
-							"value": "Leo",
+							"value": "Hilder",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "last_name",
-							"value": "Loyo",
+							"value": "Hernandez",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "cyberedward@gmail.com",
+							"value": "hilderalbertohm@gmail.com",
 							"description": "",
 							"type": "text"
 						},
@@ -70,7 +73,7 @@
 						},
 						{
 							"key": "Username",
-							"value": "leol",
+							"value": "hilderh",
 							"description": "",
 							"type": "text"
 						}
